@@ -24,7 +24,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'import/prefer-default-export': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -49,6 +49,8 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+
+    'prettier/prettier': 'error',
   },
   settings: {
     'import/resolver': {
