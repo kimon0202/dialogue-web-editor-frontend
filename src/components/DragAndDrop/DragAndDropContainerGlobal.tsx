@@ -11,7 +11,9 @@ import { Container } from './styles';
 
 const DragAndDropContainerGlobal: React.FC = observer(() => {
   const [showContextMenu, setShowContextMenu] = useState(false);
-  const { nodesStore, connectionsStore } = useContext(RootStoreContext);
+  const { nodesStore, connectionsStore, filesStore } = useContext(
+    RootStoreContext,
+  );
 
   const moveNode = useCallback(
     (id: string, left: number, top: number) => {
@@ -29,6 +31,10 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
     const identifier = `id:node${numberOfNodes}`;
 
     addNode(identifier, event.clientX, event.clientY);
+  };
+
+  const loadFileClick = () => {
+    filesStore.setModal(true);
   };
 
   const [, drop] = useDrop({
@@ -53,11 +59,12 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
 
   return (
     <>
-      {!nodesStore.showModal && (
+      {!nodesStore.showModal && !filesStore.loadFileModal && (
         <>
           <ContextMenu
             options={[
               { label: 'New Node', callback: handleAddNode },
+              { label: 'Load File', callback: loadFileClick },
               { label: 'Close' },
             ]}
             visible={showContextMenu}

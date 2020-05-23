@@ -11,6 +11,7 @@ import Select from '../../components/Select';
 import { Space } from '../../components/Space';
 import TextArea from '../../components/TextArea';
 import { RootStoreContext } from '../../stores';
+import LoadModal from './LoadModal';
 import {
   BoxContainer,
   Center,
@@ -200,6 +201,7 @@ const Main: React.FC = observer(() => {
   return (
     <>
       {renderModal()}
+      <LoadModal />
       <DndProvider backend={backend}>
         <DragAroundCustomLayer />
       </DndProvider>
