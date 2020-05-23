@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2829834df4528a4e0ca996018fc006a8",
+    "revision": "309e71f7ccdca90e1370cd5c991ed3fa",
     "url": "/dialogue-web-editor-frontend/index.html"
   },
   {
-    "revision": "76f5d356d858aac8e044",
+    "revision": "6f1e2245e03f1897c4ef",
     "url": "/dialogue-web-editor-frontend/static/css/main.29ce97ea.chunk.css"
   },
   {
-    "revision": "3662c4bc0aefad5b9d8c",
-    "url": "/dialogue-web-editor-frontend/static/js/2.1cb0afcd.chunk.js"
+    "revision": "406624501d6c6c5813e6",
+    "url": "/dialogue-web-editor-frontend/static/js/2.d45cb499.chunk.js"
   },
   {
     "revision": "882fee5ad56cfd78b1cc5d94b617aa42",
-    "url": "/dialogue-web-editor-frontend/static/js/2.1cb0afcd.chunk.js.LICENSE.txt"
+    "url": "/dialogue-web-editor-frontend/static/js/2.d45cb499.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "76f5d356d858aac8e044",
-    "url": "/dialogue-web-editor-frontend/static/js/main.cae2a998.chunk.js"
+    "revision": "6f1e2245e03f1897c4ef",
+    "url": "/dialogue-web-editor-frontend/static/js/main.c5587372.chunk.js"
   },
   {
     "revision": "eaa8903fc781c679941d",
