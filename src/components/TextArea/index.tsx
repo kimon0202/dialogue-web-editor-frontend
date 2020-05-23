@@ -4,11 +4,12 @@ import React, { useEffect, useRef } from 'react';
 interface Props {
   name: string;
   label?: string;
+  width?: number;
 }
 
 type TextareaProps = JSX.IntrinsicElements['textarea'] & Props;
 
-const TextArea: React.FC<TextareaProps> = ({ name, label, ...rest }) => {
+const TextArea: React.FC<TextareaProps> = ({ name, label, width, ...rest }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -29,7 +30,7 @@ const TextArea: React.FC<TextareaProps> = ({ name, label, ...rest }) => {
         ref={textareaRef}
         defaultValue={defaultValue}
         style={{
-          width: '100%',
+          width: width || 400,
           height: 400,
           background: '#e4e4e4',
           fontSize: 18,

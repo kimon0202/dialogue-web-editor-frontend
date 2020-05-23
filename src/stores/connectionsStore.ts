@@ -1,3 +1,4 @@
+import update from 'immutability-helper';
 import { action, observable } from 'mobx';
 
 import { RootStore } from '.';
@@ -23,10 +24,11 @@ class ConnectionsStore {
       }
     }
 
-    this.connections.push({
-      fromId,
-      toId,
+    const temp = update(this.connections, {
+      $push: [{ fromId, toId }],
     });
+
+    this.connections = temp;
   }
 }
 

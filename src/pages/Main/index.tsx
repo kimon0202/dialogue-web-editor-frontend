@@ -41,7 +41,7 @@ const Main: React.FC = observer(() => {
   };
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {
-    console.log(data);
+    // console.log(data);
     const { inConnections, outConnections, text, type } = data;
 
     const node = nodesStore.activeNode;
@@ -180,7 +180,12 @@ const Main: React.FC = observer(() => {
                 </BoxContainer>
                 <Space width="100%" height={20} />
                 <BoxContainer>
-                  <TextArea name="text" autoFocus placeholder="Dialogue text" />
+                  <TextArea
+                    name="text"
+                    autoFocus
+                    placeholder="Dialogue text"
+                    width={800}
+                  />
                 </BoxContainer>
                 <Space width="100%" height={30} />
                 <Center>

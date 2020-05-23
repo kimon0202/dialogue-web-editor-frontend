@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import { action, computed, observable } from 'mobx';
 
 import { RootStore } from '.';
+import { FileData } from '../types/FileData';
 import { NodeMap } from '../types/Node';
 
 interface ActiveNodeModal {
@@ -79,6 +80,8 @@ class NodesStore {
         top: 20,
       },
     };
+    this.rootStore.connectionsStore.connections = [];
+    this.rootStore.filesStore.file = {} as FileData;
   }
 
   @computed

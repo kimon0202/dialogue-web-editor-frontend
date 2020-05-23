@@ -6,7 +6,7 @@ import { RootStoreContext } from '../../stores';
 import { ItemTypes } from '../../types/ItemTypes';
 import { Node } from '../../types/Node';
 import ContextMenu from '../ContextMenu';
-import { Connection, DraggableDialogueNode } from '../Nodes';
+import { Connection as ConnectionLine, DraggableDialogueNode } from '../Nodes';
 import { Container } from './styles';
 
 const DragAndDropContainerGlobal: React.FC = observer(() => {
@@ -98,26 +98,27 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
                   <polygon points="0 0, 10 3.5, 0 7" />
                 </marker>
               </defs>
-              {connectionsStore.connections.map((connection) => {
-                const from = {
-                  x: nodesStore.nodes[connection.fromId].left,
-                  y: nodesStore.nodes[connection.fromId].top,
-                };
+              {connectionsStore.connections.length > 0 &&
+                connectionsStore.connections.map((connection) => {
+                  const from = {
+                    x: nodesStore.nodes[connection.fromId].left,
+                    y: nodesStore.nodes[connection.fromId].top,
+                  };
 
-                const to = {
-                  x: nodesStore.nodes[connection.toId].left,
-                  y: nodesStore.nodes[connection.toId].top,
-                };
+                  const to = {
+                    x: nodesStore.nodes[connection.toId].left,
+                    y: nodesStore.nodes[connection.toId].top,
+                  };
 
-                return (
-                  <Connection
-                    key={`${connection.fromId}${connection.toId}`}
-                    from={from}
-                    to={to}
-                    markerMid="url(#arrowhead)"
-                  />
-                );
-              })}
+                  return (
+                    <ConnectionLine
+                      key={`${connection.fromId}${connection.toId}`}
+                      from={from}
+                      to={to}
+                      markerMid="url(#arrowhead)"
+                    />
+                  );
+                })}
             </svg>
           </Container>
         </>
