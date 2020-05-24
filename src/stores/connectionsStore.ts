@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { action, observable } from 'mobx';
+import { action, decorate, observable } from 'mobx';
 
 import { RootStore } from '.';
 import { Connection } from '../types/Connection';
@@ -11,9 +11,8 @@ class ConnectionsStore {
     this.rootStore = rootStore;
   }
 
-  @observable connections: Connection[] = [];
+  connections: Connection[] = [];
 
-  @action
   public addConnection(fromId: string, toId: string) {
     for (let i = 0; i < this.connections.length; i += 1) {
       if (
@@ -31,5 +30,10 @@ class ConnectionsStore {
     this.connections = temp;
   }
 }
+
+decorate(ConnectionsStore, {
+  connections: observable,
+  addConnection: action,
+});
 
 export default ConnectionsStore;

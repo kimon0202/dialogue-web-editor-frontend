@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { action, computed, observable } from 'mobx';
+import { action, computed, decorate, observable } from 'mobx';
 
 import { RootStore } from '.';
 import { FileData } from '../types/FileData';
@@ -17,7 +17,7 @@ class NodesStore {
     this.rootStore = rootStore;
   }
 
-  @observable nodes: NodeMap = {
+  nodes: NodeMap = {
     'id:rootNode': {
       id: 'id:rootNode',
       left: 80,
@@ -25,12 +25,11 @@ class NodesStore {
     },
   };
 
-  @observable activeNodeModal: ActiveNodeModal = {
+  activeNodeModal: ActiveNodeModal = {
     id: '',
     mode: null,
   };
 
-  @action
   public updateNodePosition(id: string, left: number, top: number) {
     this.nodes = update(this.nodes, {
       [id]: {
@@ -39,7 +38,6 @@ class NodesStore {
     });
   }
 
-  @action
   public addNode(id: string, left: number, top: number) {
     const newNodes = update(this.nodes, {
       [id]: {
@@ -54,7 +52,6 @@ class NodesStore {
     this.nodes = newNodes;
   }
 
-  @action
   public deleteNode(id: string) {
     this.nodesKeys.forEach((key) => {
       if (key === id) {
@@ -63,7 +60,6 @@ class NodesStore {
     });
   }
 
-  @action
   public setActiveNode(id: string, mode: 'delete' | 'edit' | null) {
     this.activeNodeModal = {
       id,
@@ -71,7 +67,6 @@ class NodesStore {
     };
   }
 
-  @action
   public reset() {
     this.nodes = {
       'id:rootNode': {
@@ -84,12 +79,10 @@ class NodesStore {
     this.rootStore.filesStore.file = {} as FileData;
   }
 
-  @computed
   public get activeNode() {
     return this.nodes[this.activeNodeModal.id];
   }
 
-  @computed
   public get activeNodeOptions() {
     const opts = this.nodesKeys.filter((key) => key !== this.activeNode.id);
     const possibleOptions: { label: string; value: string }[] = [];
@@ -104,17 +97,14 @@ class NodesStore {
     return possibleOptions;
   }
 
-  @computed
   public get nodesKeys() {
     return Object.keys(this.nodes);
   }
 
-  @computed
   public get showModal() {
     return this.activeNodeModal.id !== '';
   }
 
-  @computed
   // eslint-disable-next-line class-methods-use-this
   public get dialogueTypeOptions() {
     const options: { label: string; value: string }[] = [
@@ -131,5 +121,20 @@ class NodesStore {
     return options;
   }
 }
+
+decorate(NodesStore, {
+  nodes: observable,
+  activeNodeModal: observable,
+  updateNodePosition: action,
+  addNode: action,
+  deleteNode: action,
+  setActiveNode: action,
+  reset: action,
+  activeNode: computed,
+  activeNodeOptions: computed,
+  nodesKeys: computed,
+  showModal: computed,
+  dialogueTypeOptions: computed,
+});
 
 export default NodesStore;

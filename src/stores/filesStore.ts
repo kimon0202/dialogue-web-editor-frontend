@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, decorate, observable } from 'mobx';
 
 import { RootStore } from '.';
 import { FileData } from '../types/FileData';
@@ -10,15 +10,13 @@ class FilesStore {
     this.rootStore = rootStore;
   }
 
-  @observable file: FileData = {} as FileData;
-  @observable loadFileModal = false;
+  file: FileData = {} as FileData;
+  loadFileModal = false;
 
-  @action
   public setModal(state: boolean) {
     this.loadFileModal = state;
   }
 
-  @action
   public loadFileContent() {
     if (!this.file) {
       return;
@@ -28,5 +26,12 @@ class FilesStore {
     this.rootStore.connectionsStore.connections = this.file.connections;
   }
 }
+
+decorate(FilesStore, {
+  file: observable,
+  loadFileModal: observable,
+  setModal: action,
+  loadFileContent: action,
+});
 
 export default FilesStore;
