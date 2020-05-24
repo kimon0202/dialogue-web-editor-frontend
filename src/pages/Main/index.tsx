@@ -1,6 +1,6 @@
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import backend from 'react-dnd-html5-backend';
 
@@ -35,6 +35,10 @@ interface NodeEditFormData {
 const Main: React.FC = observer(() => {
   const { nodesStore, connectionsStore } = useContext(RootStoreContext);
   const editNodeFormRef = useRef<FormHandles>(null);
+
+  useEffect(() => {
+    console.log('Version 1.2');
+  }, []);
 
   const deleteNode = (id: string) => {
     nodesStore.deleteNode(id);
