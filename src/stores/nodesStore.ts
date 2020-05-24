@@ -22,6 +22,10 @@ class NodesStore {
       id: 'id:rootNode',
       left: 80,
       top: 20,
+      dialogueType: undefined,
+      inConnections: [],
+      outConnections: [],
+      text: '',
     },
   };
 
@@ -45,6 +49,10 @@ class NodesStore {
           left,
           top,
           id,
+          dialogueType: undefined,
+          inConnections: [],
+          outConnections: [],
+          text: '',
         },
       },
     });
@@ -73,6 +81,10 @@ class NodesStore {
         id: 'id:rootNode',
         left: 80,
         top: 20,
+        dialogueType: undefined,
+        inConnections: [],
+        outConnections: [],
+        text: '',
       },
     };
     this.rootStore.connectionsStore.connections = [];
@@ -119,6 +131,32 @@ class NodesStore {
     ];
 
     return options;
+  }
+
+  public removeConnectionFromNode(idToRemove: string, nodeId: string) {
+    const inTemp: number[] = [];
+
+    this.nodes[nodeId].inConnections?.forEach((connection, index) => {
+      if (connection === idToRemove) {
+        inTemp.push(index);
+      }
+    });
+
+    inTemp.forEach((index) => {
+      this.nodes[nodeId].inConnections?.splice(index, 1);
+    });
+
+    const outTemp: number[] = [];
+
+    this.nodes[nodeId].outConnections?.forEach((connection, index) => {
+      if (connection === idToRemove) {
+        outTemp.push(index);
+      }
+    });
+
+    outTemp.forEach((index) => {
+      this.nodes[nodeId].outConnections?.splice(index, 1);
+    });
   }
 }
 

@@ -33,6 +33,7 @@ module.exports = {
 
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-expressions': 'off',
 
     'lines-between-class-members': 'off',
     'prefer-template': 'off',
@@ -40,6 +41,7 @@ module.exports = {
     'func-names': 'off',
     'prefer-destructuring': 'off',
     'no-param-reassign': 'off',
+    'no-unused-expressions': 'off',
 
     'react/jsx-filename-extension': [
       'error',

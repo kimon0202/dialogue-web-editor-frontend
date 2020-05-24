@@ -17,8 +17,8 @@ import { light } from './styles/themes/light';
 // import { dark } from './styles/themes/dark';
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
     <ThemeProvider theme={light}>
+      <GlobalStyles />
       <RootContainer>
         <SidebarContainer>
           <Sidebar />

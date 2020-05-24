@@ -15,6 +15,5 @@ export const DragLayer = styled.div`
   top: 0;
   z-index: 100;
   position: fixed;
-
   pointer-events: none;
 `;

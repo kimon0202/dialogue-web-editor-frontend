@@ -29,11 +29,26 @@ class ConnectionsStore {
 
     this.connections = temp;
   }
+
+  public removeConnnections(id: string) {
+    const temp: number[] = [];
+
+    this.connections.forEach((connection, index) => {
+      if (connection.fromId === id || connection.toId === id) {
+        temp.push(index);
+      }
+    });
+
+    temp.forEach((index) => {
+      this.connections.splice(index, 1);
+    });
+  }
 }
 
 decorate(ConnectionsStore, {
   connections: observable,
   addConnection: action,
+  removeConnnections: action,
 });
 
 export default ConnectionsStore;

@@ -1,6 +1,6 @@
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import backend from 'react-dnd-html5-backend';
 
@@ -36,12 +36,17 @@ const Main: React.FC = observer(() => {
   const { nodesStore, connectionsStore } = useContext(RootStoreContext);
   const editNodeFormRef = useRef<FormHandles>(null);
 
-  useEffect(() => {
-    console.log('Version 1.2');
-  }, []);
-
   const deleteNode = (id: string) => {
+    if (id === 'id:rootNode') {
+      return;
+    }
+
     nodesStore.deleteNode(id);
+    connectionsStore.removeConnnections(id);
+
+    nodesStore.nodesKeys.forEach((key) => {
+      nodesStore.removeConnectionFromNode(id, key);
+    });
   };
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {
@@ -56,31 +61,14 @@ const Main: React.FC = observer(() => {
     node.outConnections = outConnections.map((connection) => connection.value);
 
     outConnections.forEach((connection) => {
-      if (!nodesStore.nodes[connection.value].inConnections) {
-        nodesStore.nodes[connection.value].inConnections = [];
-      }
-
-      if (
-        !nodesStore.nodes[connection.value].inConnections?.includes(node.id)
-      ) {
-        // eslint-disable-next-line no-unused-expressions
-        nodesStore.nodes[connection.value].inConnections?.push(node.id);
-      }
-
+      nodesStore.nodes[connection.value].inConnections = [];
+      nodesStore.nodes[connection.value].inConnections?.push(node.id);
       connectionsStore.addConnection(node.id, connection.value);
     });
 
     inConnections.forEach((connection) => {
-      if (!nodesStore.nodes[connection.value].outConnections) {
-        nodesStore.nodes[connection.value].outConnections = [];
-      }
-
-      if (
-        !nodesStore.nodes[connection.value].outConnections?.includes(node.id)
-      ) {
-        // eslint-disable-next-line no-unused-expressions
-        nodesStore.nodes[connection.value].outConnections?.push(node.id);
-      }
+      nodesStore.nodes[connection.value].outConnections = [];
+      nodesStore.nodes[connection.value].outConnections?.push(node.id);
       connectionsStore.addConnection(connection.value, node.id);
     });
 
