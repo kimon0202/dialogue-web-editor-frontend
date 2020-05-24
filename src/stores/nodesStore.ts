@@ -121,42 +121,16 @@ class NodesStore {
   public get dialogueTypeOptions() {
     const options: { label: string; value: string }[] = [
       {
-        label: 'player',
-        value: 'player',
+        label: 'Player',
+        value: 'Player',
       },
       {
-        label: 'ai-character',
-        value: 'ai-character',
+        label: 'AICharacter',
+        value: 'AICharacter',
       },
     ];
 
     return options;
-  }
-
-  public removeConnectionFromNode(idToRemove: string, nodeId: string) {
-    const inTemp: number[] = [];
-
-    this.nodes[nodeId].inConnections?.forEach((connection, index) => {
-      if (connection === idToRemove) {
-        inTemp.push(index);
-      }
-    });
-
-    inTemp.forEach((index) => {
-      this.nodes[nodeId].inConnections?.splice(index, 1);
-    });
-
-    const outTemp: number[] = [];
-
-    this.nodes[nodeId].outConnections?.forEach((connection, index) => {
-      if (connection === idToRemove) {
-        outTemp.push(index);
-      }
-    });
-
-    outTemp.forEach((index) => {
-      this.nodes[nodeId].outConnections?.splice(index, 1);
-    });
   }
 }
 
@@ -165,7 +139,6 @@ decorate(NodesStore, {
   activeNodeModal: observable,
   updateNodePosition: action,
   addNode: action,
-  deleteNode: action,
   setActiveNode: action,
   reset: action,
   activeNode: computed,

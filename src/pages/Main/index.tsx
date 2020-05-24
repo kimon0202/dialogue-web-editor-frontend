@@ -37,16 +37,8 @@ const Main: React.FC = observer(() => {
   const editNodeFormRef = useRef<FormHandles>(null);
 
   const deleteNode = (id: string) => {
-    if (id === 'id:rootNode') {
-      return;
-    }
-
     nodesStore.deleteNode(id);
     connectionsStore.removeConnnections(id);
-
-    nodesStore.nodesKeys.forEach((key) => {
-      nodesStore.removeConnectionFromNode(id, key);
-    });
   };
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {

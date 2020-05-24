@@ -28,7 +28,9 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   return (
     <Container>
       <IconsContainer>
-        <DeleteIcon onClick={deleteNode} />
+        {identifier === 'id:rootNode' ? null : (
+          <DeleteIcon onClick={deleteNode} />
+        )}
         <EditIcon onClick={editNode} />
       </IconsContainer>
       <ContentContainer>{identifier}</ContentContainer>
