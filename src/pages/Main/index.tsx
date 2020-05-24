@@ -49,20 +49,16 @@ const Main: React.FC = observer(() => {
 
     node.text = text;
     node.dialogueType = type;
-    node.inConnections = inConnections.map((connection) => connection.value);
-    node.outConnections = outConnections.map((connection) => connection.value);
 
     outConnections.forEach((connection) => {
-      nodesStore.nodes[connection.value].inConnections = [];
-      nodesStore.nodes[connection.value].inConnections?.push(node.id);
       connectionsStore.addConnection(node.id, connection.value);
     });
 
-    inConnections.forEach((connection) => {
-      nodesStore.nodes[connection.value].outConnections = [];
-      nodesStore.nodes[connection.value].outConnections?.push(node.id);
-      connectionsStore.addConnection(connection.value, node.id);
-    });
+    if (node.id !== 'id:rootNode') {
+      inConnections.forEach((connection) => {
+        connectionsStore.addConnection(connection.value, node.id);
+      });
+    }
 
     nodesStore.setActiveNode('', null);
   };
@@ -99,29 +95,36 @@ const Main: React.FC = observer(() => {
       const initialText = node.text;
       const initialDialogueType = node.dialogueType;
 
-      const tempIn = [];
-      const tempOut = [];
+      const initialInConnections = [];
+      const initialOutConnections = [];
 
-      if (node.inConnections !== undefined) {
-        for (let i = 0; i < node.inConnections?.length; i += 1) {
-          tempIn.push({
-            label: node.inConnections[i],
-            value: node.inConnections[i],
-          });
+      for (let i = 0; i < connectionsStore.connections.length; i += 1) {
+        if (connectionsStore.connections[i].toId === node.id) {
+          if (
+            nodesStore.nodes[connectionsStore.connections[i].fromId] !==
+            undefined
+          ) {
+            initialInConnections.push({
+              label: connectionsStore.connections[i].fromId,
+              value: connectionsStore.connections[i].fromId,
+            });
+          }
         }
       }
 
-      if (node.outConnections !== undefined) {
-        for (let i = 0; i < node.outConnections?.length; i += 1) {
-          tempOut.push({
-            label: node.outConnections[i],
-            value: node.outConnections[i],
-          });
+      for (let i = 0; i < connectionsStore.connections.length; i += 1) {
+        if (connectionsStore.connections[i].fromId === node.id) {
+          if (
+            nodesStore.nodes[connectionsStore.connections[i].fromId] !==
+            undefined
+          ) {
+            initialOutConnections.push({
+              label: connectionsStore.connections[i].toId,
+              value: connectionsStore.connections[i].toId,
+            });
+          }
         }
       }
-
-      const initialInConnections = tempIn;
-      const initialOutConnections = tempOut;
 
       return (
         <Modal
@@ -144,12 +147,14 @@ const Main: React.FC = observer(() => {
                 }}
               >
                 <BoxContainer>
-                  <Select
-                    name="inConnections"
-                    label="In Connections"
-                    multiple
-                    options={nodesStore.activeNodeOptions}
-                  />
+                  {node.id === 'id:rootNode' ? null : (
+                    <Select
+                      name="inConnections"
+                      label="In Connections"
+                      multiple
+                      options={nodesStore.activeNodeOptions}
+                    />
+                  )}
                   <Select
                     name="outConnections"
                     label="Out Connections"
@@ -159,7 +164,20 @@ const Main: React.FC = observer(() => {
                   <Select
                     name="type"
                     label="Dialogue Type"
-                    options={nodesStore.dialogueTypeOptions}
+                    options={[
+                      {
+                        label: 'Select Dialogue Type...',
+                        value: 'None',
+                      },
+                      {
+                        label: 'Player',
+                        value: 'Player',
+                      },
+                      {
+                        label: 'AICharacter',
+                        value: 'AICharacter',
+                      },
+                    ]}
                   />
                 </BoxContainer>
                 <Space width="100%" height={20} />

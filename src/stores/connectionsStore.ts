@@ -31,17 +31,10 @@ class ConnectionsStore {
   }
 
   public removeConnnections(id: string) {
-    const temp: number[] = [];
-
-    this.connections.forEach((connection, index) => {
-      if (connection.fromId === id || connection.toId === id) {
-        temp.push(index);
-      }
-    });
-
-    temp.forEach((index) => {
-      this.connections.splice(index, 1);
-    });
+    const temp = this.connections.filter(
+      (connection) => connection.fromId !== id || connection.toId !== id,
+    );
+    this.connections = temp;
   }
 }
 

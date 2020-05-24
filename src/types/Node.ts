@@ -5,8 +5,6 @@ export interface Node {
   top: number;
   text?: string;
   dialogueType?: string;
-  inConnections?: string[];
-  outConnections?: string[];
 }
 
 export interface NodeMap {
@@ -16,7 +14,5 @@ export interface NodeMap {
     top: number;
     text?: string;
     dialogueType?: string;
-    inConnections?: string[];
-    outConnections?: string[];
   };
 }

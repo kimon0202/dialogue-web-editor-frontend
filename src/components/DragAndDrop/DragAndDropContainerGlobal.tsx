@@ -6,14 +6,13 @@ import { RootStoreContext } from '../../stores';
 import { ItemTypes } from '../../types/ItemTypes';
 import { Node } from '../../types/Node';
 import ContextMenu from '../ContextMenu';
-import { Connection as ConnectionLine, DraggableDialogueNode } from '../Nodes';
+import { DraggableDialogueNode } from '../Nodes';
+import ConnectionsContainer from './ConnectionsContainer';
 import { Container } from './styles';
 
 const DragAndDropContainerGlobal: React.FC = observer(() => {
   const [showContextMenu, setShowContextMenu] = useState(false);
-  const { nodesStore, connectionsStore, filesStore } = useContext(
-    RootStoreContext,
-  );
+  const { nodesStore, filesStore } = useContext(RootStoreContext);
 
   const moveNode = useCallback(
     (id: string, left: number, top: number) => {
@@ -81,48 +80,7 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
         {nodesStore.nodesKeys.map((key) =>
           renderNode(nodesStore.nodes[key], key),
         )}
-        <svg
-          width="100%"
-          height="100%"
-          style={{
-            zIndex: 400,
-          }}
-        >
-          <defs>
-            <marker
-              id="arrowhead"
-              markerWidth="10"
-              markerHeight="7"
-              refX="0"
-              refY="3.5"
-              orient="auto"
-            >
-              <polygon points="0 0, 10 3.5, 0 7" />
-            </marker>
-          </defs>
-          {connectionsStore.connections.length > 0
-            ? connectionsStore.connections.map((connection) => {
-                const from = {
-                  x: nodesStore.nodes[connection.fromId].left,
-                  y: nodesStore.nodes[connection.fromId].top,
-                };
-
-                const to = {
-                  x: nodesStore.nodes[connection.toId].left,
-                  y: nodesStore.nodes[connection.toId].top,
-                };
-
-                return (
-                  <ConnectionLine
-                    key={`${connection.fromId}${connection.toId}`}
-                    from={from}
-                    to={to}
-                    markerMid="url(#arrowhead)"
-                  />
-                );
-              })
-            : null}
-        </svg>
+        <ConnectionsContainer />
       </Container>
     </>
   );

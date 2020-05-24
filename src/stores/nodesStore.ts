@@ -23,8 +23,6 @@ class NodesStore {
       left: 80,
       top: 20,
       dialogueType: undefined,
-      inConnections: [],
-      outConnections: [],
       text: '',
     },
   };
@@ -50,8 +48,6 @@ class NodesStore {
           top,
           id,
           dialogueType: undefined,
-          inConnections: [],
-          outConnections: [],
           text: '',
         },
       },
@@ -82,8 +78,6 @@ class NodesStore {
         left: 80,
         top: 20,
         dialogueType: undefined,
-        inConnections: [],
-        outConnections: [],
         text: '',
       },
     };
@@ -116,26 +110,6 @@ class NodesStore {
   public get showModal() {
     return this.activeNodeModal.id !== '';
   }
-
-  // eslint-disable-next-line class-methods-use-this
-  public get dialogueTypeOptions() {
-    const options: { label: string; value: string }[] = [
-      {
-        label: 'Select Dialogue Type...',
-        value: 'None',
-      },
-      {
-        label: 'Player',
-        value: 'Player',
-      },
-      {
-        label: 'AICharacter',
-        value: 'AICharacter',
-      },
-    ];
-
-    return options;
-  }
 }
 
 decorate(NodesStore, {
@@ -149,7 +123,6 @@ decorate(NodesStore, {
   activeNodeOptions: computed,
   nodesKeys: computed,
   showModal: computed,
-  dialogueTypeOptions: computed,
 });
 
 export default NodesStore;
