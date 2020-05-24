@@ -14,8 +14,6 @@ interface DialogueNodeProps {
   identifier: string;
 }
 
-// Add Modal for deletion confirmation
-
 const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   const { nodesStore } = useContext(RootStoreContext);
 

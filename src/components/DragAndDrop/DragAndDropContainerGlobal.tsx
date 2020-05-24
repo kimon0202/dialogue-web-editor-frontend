@@ -57,72 +57,73 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
     return <DraggableDialogueNode key={key} id={key} {...item} />;
   };
 
+  if (nodesStore.showModal || filesStore.loadFileModal) {
+    return null;
+  }
+
   return (
     <>
-      {!nodesStore.showModal && !filesStore.loadFileModal && (
-        <>
-          <ContextMenu
-            options={[
-              { label: 'New Node', callback: handleAddNode },
-              { label: 'Load File', callback: loadFileClick },
-              { label: 'Close' },
-            ]}
-            visible={showContextMenu}
-            changeVisibility={setShowContextMenu}
-          />
+      <ContextMenu
+        options={[
+          { label: 'New Node', callback: handleAddNode },
+          { label: 'Load File', callback: loadFileClick },
+          { label: 'Close' },
+        ]}
+        visible={showContextMenu}
+        changeVisibility={setShowContextMenu}
+      />
 
-          <Container
-            ref={drop}
-            onContextMenu={() => setShowContextMenu(true)}
-            onClick={() => setShowContextMenu(false)}
-          >
-            {nodesStore.nodesKeys.map((key) =>
-              renderNode(nodesStore.nodes[key], key),
-            )}
-            <svg
-              width="100%"
-              height="100%"
-              style={{
-                zIndex: 400,
-              }}
+      <Container
+        ref={drop}
+        onContextMenu={() => setShowContextMenu(true)}
+        onClick={() => setShowContextMenu(false)}
+      >
+        {nodesStore.nodesKeys.map((key) =>
+          renderNode(nodesStore.nodes[key], key),
+        )}
+        <svg
+          width="100%"
+          height="100%"
+          style={{
+            zIndex: 400,
+          }}
+        >
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="0"
+              refY="3.5"
+              orient="auto"
             >
-              <defs>
-                <marker
-                  id="arrowhead"
-                  markerWidth="10"
-                  markerHeight="7"
-                  refX="0"
-                  refY="3.5"
-                  orient="auto"
-                >
-                  <polygon points="0 0, 10 3.5, 0 7" />
-                </marker>
-              </defs>
-              {connectionsStore.connections.length > 0 &&
-                connectionsStore.connections.map((connection) => {
-                  const from = {
-                    x: nodesStore.nodes[connection.fromId].left,
-                    y: nodesStore.nodes[connection.fromId].top,
-                  };
+              <polygon points="0 0, 10 3.5, 0 7" />
+            </marker>
+          </defs>
+          {connectionsStore.connections.length > 0
+            ? connectionsStore.connections.map((connection) => {
+                const from = {
+                  x: nodesStore.nodes[connection.fromId].left,
+                  y: nodesStore.nodes[connection.fromId].top,
+                };
 
-                  const to = {
-                    x: nodesStore.nodes[connection.toId].left,
-                    y: nodesStore.nodes[connection.toId].top,
-                  };
+                const to = {
+                  x: nodesStore.nodes[connection.toId].left,
+                  y: nodesStore.nodes[connection.toId].top,
+                };
 
-                  return (
-                    <ConnectionLine
-                      key={`${connection.fromId}${connection.toId}`}
-                      from={from}
-                      to={to}
-                      markerMid="url(#arrowhead)"
-                    />
-                  );
-                })}
-            </svg>
-          </Container>
-        </>
-      )}
+                return (
+                  <ConnectionLine
+                    key={`${connection.fromId}${connection.toId}`}
+                    from={from}
+                    to={to}
+                    markerMid="url(#arrowhead)"
+                  />
+                );
+              })
+            : null}
+        </svg>
+      </Container>
     </>
   );
 });

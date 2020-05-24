@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import { Container } from './styles';
-
 interface Props {
   from: {
     x: number;
@@ -20,17 +18,6 @@ const Connection: React.FC<Props> = ({
   markerMid,
 }) => {
   return (
-    // <line
-    //   x1={x1 + 75}
-    //   x2={x2 + 75}
-    //   y1={y1 + 50}
-    //   y2={y2 + 50}
-    //   strokeLinecap="round"
-    //   strokeWidth={2}
-    //   stroke="#000"
-    //   markerUnits={2}
-    //   markerMid={markerMid}
-    // />
     <path
       stroke="#000"
       strokeWidth={2}

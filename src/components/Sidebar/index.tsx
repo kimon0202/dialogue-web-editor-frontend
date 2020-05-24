@@ -53,12 +53,12 @@ const Sidebar: React.FC = observer(() => {
         <Button onClick={handleSave}>Save</Button>
         <Space width="100%" height={20} />
         <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
-        {filesStore.file.name && (
+        {filesStore.file.name ? (
           <>
             <Space width="100%" height={20} />
             <Button onClick={() => handleFileDownload()}>Download File</Button>
           </>
-        )}
+        ) : null}
       </ButtonsContainer>
     </Container>
   );

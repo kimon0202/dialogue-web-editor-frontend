@@ -23,7 +23,7 @@ const TextArea: React.FC<TextareaProps> = ({ name, label, width, ...rest }) => {
 
   return (
     <div>
-      {label && <label htmlFor={fieldName}>{label}</label>}
+      {label ? <label htmlFor={fieldName}>{label}</label> : null}
 
       <textarea
         id={fieldName}
@@ -40,7 +40,7 @@ const TextArea: React.FC<TextareaProps> = ({ name, label, width, ...rest }) => {
         {...rest}
       />
 
-      {error && <span>{error}</span>}
+      {error ? <span>{error}</span> : null}
     </div>
   );
 };

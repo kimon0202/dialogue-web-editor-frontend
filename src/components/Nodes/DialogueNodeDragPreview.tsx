@@ -2,8 +2,6 @@ import React from 'react';
 
 import DialogueNode from './DialogueNode';
 
-// import { Container } from './styles';
-
 interface DialogueNodeDragPreviewProps {
   identifier: string;
 }

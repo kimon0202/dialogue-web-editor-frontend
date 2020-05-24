@@ -7,7 +7,6 @@ import { Node } from '../../types/Node';
 import { getStyles } from '../../utils/getStyles';
 import DialogueNode from './DialogueNode';
 
-// import { Container } from './styles';
 const DraggableDialogueNode: React.FC<Node> = ({ id, left, top }) => {
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.NODE, id, left, top },
