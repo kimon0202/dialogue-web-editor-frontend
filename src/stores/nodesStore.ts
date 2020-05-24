@@ -121,6 +121,10 @@ class NodesStore {
   public get dialogueTypeOptions() {
     const options: { label: string; value: string }[] = [
       {
+        label: 'Select Dialogue Type...',
+        value: 'None',
+      },
+      {
         label: 'Player',
         value: 'Player',
       },
