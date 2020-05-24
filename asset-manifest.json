@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/dialogue-web-editor-frontend/static/css/main.29ce97ea.chunk.css",
-    "main.js": "/dialogue-web-editor-frontend/static/js/main.2b47b70b.chunk.js",
-    "main.js.map": "/dialogue-web-editor-frontend/static/js/main.2b47b70b.chunk.js.map",
+    "main.js": "/dialogue-web-editor-frontend/static/js/main.498abfb1.chunk.js",
+    "main.js.map": "/dialogue-web-editor-frontend/static/js/main.498abfb1.chunk.js.map",
     "runtime-main.js": "/dialogue-web-editor-frontend/static/js/runtime-main.3bf627d7.js",
     "runtime-main.js.map": "/dialogue-web-editor-frontend/static/js/runtime-main.3bf627d7.js.map",
     "static/js/2.a62fe5de.chunk.js": "/dialogue-web-editor-frontend/static/js/2.a62fe5de.chunk.js",
     "static/js/2.a62fe5de.chunk.js.map": "/dialogue-web-editor-frontend/static/js/2.a62fe5de.chunk.js.map",
     "index.html": "/dialogue-web-editor-frontend/index.html",
-    "precache-manifest.92b0f1cf089212cbc22c9a84d516ac37.js": "/dialogue-web-editor-frontend/precache-manifest.92b0f1cf089212cbc22c9a84d516ac37.js",
+    "precache-manifest.d00ba52739105768e34e501b8b1bb989.js": "/dialogue-web-editor-frontend/precache-manifest.d00ba52739105768e34e501b8b1bb989.js",
     "service-worker.js": "/dialogue-web-editor-frontend/service-worker.js",
     "static/css/main.29ce97ea.chunk.css.map": "/dialogue-web-editor-frontend/static/css/main.29ce97ea.chunk.css.map",
     "static/js/2.a62fe5de.chunk.js.LICENSE.txt": "/dialogue-web-editor-frontend/static/js/2.a62fe5de.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3bf627d7.js",
     "static/js/2.a62fe5de.chunk.js",
     "static/css/main.29ce97ea.chunk.css",
-    "static/js/main.2b47b70b.chunk.js"
+    "static/js/main.498abfb1.chunk.js"
   ]
 }
