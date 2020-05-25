@@ -1,9 +1,10 @@
+import { darken } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: ${(props) => props.theme.colors.sidebar};
+  background: ${(props) => darken(0.3, props.theme.colors.background)};
 `;
 
 export const TitleContainer = styled.div`
@@ -17,10 +18,9 @@ export const TitleContainer = styled.div`
   font-size: 24px;
   font-weight: bold;
 
-  color: #fff;
+  color: ${(props) => props.theme.colors.text};
 
   padding-top: 20px;
-  z-index: 200;
 `;
 
 export const ButtonsContainer = styled.div`

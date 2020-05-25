@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { dark } from '../../styles/themes/dark';
+
 interface Props {
   from: {
     x: number;
@@ -19,7 +21,7 @@ const Connection: React.FC<Props> = ({
 }) => {
   return (
     <path
-      stroke="#000"
+      stroke={dark.colors.textSecondary}
       strokeWidth={2}
       strokeLinecap="round"
       markerUnits={2}

@@ -185,7 +185,7 @@ const Main: React.FC = observer(() => {
                     name="text"
                     autoFocus
                     placeholder="Dialogue text"
-                    width={800}
+                    width={960}
                   />
                 </BoxContainer>
                 <Space width="100%" height={30} />

@@ -1,5 +1,5 @@
 import { Delete, Edit } from '@material-ui/icons';
-import { linearGradient } from 'polished';
+import { shade } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -11,14 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: ${(props) =>
-    linearGradient({
-      colorStops: [`${props.theme.colors.sidebar} 5%`, `#1c1c2f 80%`],
-      toDirection: 'to top right',
-      fallback: '#fff',
-    })};
-  border: 1px solid ${(props) => props.theme.colors.text};
-
+  background: ${(props) => shade(0.25, props.theme.colors.primary)};
   border-radius: 20px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 `;
@@ -43,13 +36,13 @@ export const ContentContainer = styled.div`
   align-items: center;
   cursor: move;
 
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${(props) => props.theme.colors.text};
 `;
 
 export const DeleteIcon = styled(Delete)`
   width: 30px;
   height: 30px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${(props) => props.theme.colors.text};
 
   cursor: pointer;
 `;
@@ -57,7 +50,7 @@ export const DeleteIcon = styled(Delete)`
 export const EditIcon = styled(Edit)`
   width: 30px;
   height: 30px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${(props) => props.theme.colors.text};
 
   cursor: pointer;
 `;

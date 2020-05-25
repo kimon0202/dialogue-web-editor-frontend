@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 10, 10, 0.5);
   width: 100vw;
   height: 100vh;
 

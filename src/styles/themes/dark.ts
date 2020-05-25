@@ -3,11 +3,11 @@ import { DefaultTheme } from 'styled-components';
 export const dark: DefaultTheme = {
   name: 'dark',
   colors: {
-    background: '#162447',
-    sidebar: '#1b1b2f',
-    primary: '#e43f5a',
+    background: '#0e0b16',
+    backgroundSecondary: '#373340',
+    primary: '#4717f6',
     text: '#fff',
-    textSecondary: '#000',
-    accent: '#e0ac1b',
+    textSecondary: '#e7dfdd',
+    accent: '#a239ca',
   },
 };

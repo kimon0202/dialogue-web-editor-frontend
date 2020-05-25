@@ -2,7 +2,7 @@ import { shade } from 'polished';
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  background: ${(props) => props.theme.colors.accent};
+  background: ${(props) => props.theme.colors.primary};
   cursor: pointer;
 
   border: none;
@@ -14,12 +14,13 @@ export const StyledButton = styled.button`
 
   width: 150px;
   height: 60px;
+  border-radius: 15px;
 
   color: #fff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
 
   :hover {
-    background: ${(props) => shade(0.25, props.theme.colors.accent as string)};
+    background: ${(props) => shade(0.25, props.theme.colors.primary)};
   }
 `;

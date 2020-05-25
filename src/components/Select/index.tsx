@@ -1,8 +1,11 @@
 import './styles.css';
 
 import { useField } from '@unform/core';
+import { lighten } from 'polished';
 import React, { useEffect, useRef, useState } from 'react';
 import MultiSelect from 'react-multi-select-component';
+
+import { dark } from '../../styles/themes/dark';
 
 interface SelectProps {
   name: string;
@@ -68,6 +71,10 @@ const Select: React.FC<Props> = ({
           className="multi-select single"
           placeholder={placeholder}
           defaultValue={defaultValue}
+          style={{
+            background: lighten(0.45, dark.colors.backgroundSecondary),
+            outline: 'none',
+          }}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -89,6 +96,7 @@ const Select: React.FC<Props> = ({
         onChange={setValues}
         hasSelectAll={false}
         labelledBy="Select"
+        className="multi-select multiple"
       />
     </div>
   );

@@ -7,9 +7,10 @@ interface ModalContainerProps {
 }
 
 export const ModalContainer = styled.div`
-  background: ${(props) => props.theme.colors.sidebar};
+  background: ${(props) => props.theme.colors.background};
   width: ${(props: ModalContainerProps) => props.width || 400}px;
   height: ${(props: ModalContainerProps) => props.height || 400}px;
+  border-radius: 15px;
 
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@ export const ModalContainer = styled.div`
   color: ${(props) => props.theme.colors.textSecondary};
 `;
 
-export const ModalTitle = styled.h3`
+export const ModalTitle = styled.h2`
   width: 100%;
   height: 12.5%;
 

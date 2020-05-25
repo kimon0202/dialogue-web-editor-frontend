@@ -1,5 +1,8 @@
 import { useField } from '@unform/core';
+import { lighten } from 'polished';
 import React, { useEffect, useRef } from 'react';
+
+import { dark } from '../../styles/themes/dark';
 
 interface Props {
   name: string;
@@ -32,11 +35,14 @@ const TextArea: React.FC<TextareaProps> = ({ name, label, width, ...rest }) => {
         style={{
           width: width || 400,
           height: 400,
-          background: '#e4e4e4',
+          background: lighten(0.45, dark.colors.backgroundSecondary),
           fontSize: 18,
-          padding: 20,
+          padding: 10,
           resize: 'none',
+          outline: 'none',
         }}
+        autoCorrect="none"
+        autoComplete="none"
         {...rest}
       />
 

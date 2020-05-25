@@ -2,10 +2,10 @@ import { observer } from 'mobx-react-lite';
 import React, { memo, useContext } from 'react';
 
 import { RootStoreContext } from '../../stores';
+import { dark } from '../../styles/themes/dark';
 import { Connection as ConnectionLine } from '../Nodes';
 
 // import { Container } from './styles';
-
 const ConnectionsContainer: React.FC = memo(
   observer(() => {
     const { nodesStore, connectionsStore } = useContext(RootStoreContext);
@@ -23,6 +23,7 @@ const ConnectionsContainer: React.FC = memo(
             id="arrowhead"
             markerWidth="10"
             markerHeight="7"
+            fill={dark.colors.textSecondary}
             refX="0"
             refY="3.5"
             orient="auto"
