@@ -1,7 +1,9 @@
+import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 
 import { RootStoreContext } from '../../stores';
+import { Connection } from '../../types/Connection';
 import { FileData } from '../../types/FileData';
 import Button from '../Button';
 import { Space } from '../Space';
@@ -13,11 +15,17 @@ const Sidebar: React.FC = observer(() => {
   );
 
   const handleSave = () => {
+    const connections: Connection[] = [];
+
+    connectionsStore.connectionsKeys.forEach((key) => {
+      connections.push(toJS(connectionsStore.connections[key]));
+    });
+
     const file: FileData = {
       name: 'NewFile',
       createdAt: Date.now(),
       nodes: nodesStore.nodes,
-      connections: connectionsStore.connections,
+      connections,
     };
 
     filesStore.file = file;

@@ -81,7 +81,7 @@ class NodesStore {
         text: '',
       },
     };
-    this.rootStore.connectionsStore.connections = [];
+    this.rootStore.connectionsStore.connections = {};
     this.rootStore.filesStore.file = {} as FileData;
   }
 

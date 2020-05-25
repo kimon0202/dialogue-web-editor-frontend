@@ -1,8 +1,8 @@
 import update from 'immutability-helper';
-import { action, decorate, observable } from 'mobx';
+import { action, computed, decorate, observable } from 'mobx';
 
 import { RootStore } from '.';
-import { Connection } from '../types/Connection';
+import { ConnectionMap } from '../types/Connection';
 
 class ConnectionsStore {
   private rootStore: RootStore;
@@ -11,37 +11,41 @@ class ConnectionsStore {
     this.rootStore = rootStore;
   }
 
-  connections: Connection[] = [];
+  connections: ConnectionMap = {};
 
   public addConnection(fromId: string, toId: string) {
-    for (let i = 0; i < this.connections.length; i += 1) {
-      if (
-        this.connections[i].fromId === fromId &&
-        this.connections[i].toId === toId
-      ) {
-        return;
-      }
-    }
+    const key = `${fromId}|${toId}`;
 
-    const temp = update(this.connections, {
-      $push: [{ fromId, toId }],
+    const newMap = update(this.connections, {
+      [key]: {
+        $set: {
+          fromId,
+          toId,
+        },
+      },
     });
 
-    this.connections = temp;
+    this.connections = newMap;
   }
 
-  public removeConnnections(id: string) {
-    const temp = this.connections.filter(
-      (connection) => connection.fromId !== id || connection.toId !== id,
-    );
-    this.connections = temp;
+  public removeConnnection(id: string) {
+    this.connectionsKeys.forEach((key) => {
+      if (key.indexOf(id) !== -1) {
+        delete this.connections[key];
+      }
+    });
+  }
+
+  public get connectionsKeys() {
+    return Object.keys(this.connections);
   }
 }
 
 decorate(ConnectionsStore, {
   connections: observable,
   addConnection: action,
-  removeConnnections: action,
+  removeConnnection: action,
+  connectionsKeys: computed,
 });
 
 export default ConnectionsStore;

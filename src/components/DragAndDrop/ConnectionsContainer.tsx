@@ -5,6 +5,7 @@ import { RootStoreContext } from '../../stores';
 import { Connection as ConnectionLine } from '../Nodes';
 
 // import { Container } from './styles';
+
 const ConnectionsContainer: React.FC = memo(
   observer(() => {
     const { nodesStore, connectionsStore } = useContext(RootStoreContext);
@@ -29,8 +30,11 @@ const ConnectionsContainer: React.FC = memo(
             <polygon points="0 0, 10 3.5, 0 7" />
           </marker>
         </defs>
-        {connectionsStore.connections.length > 0
-          ? connectionsStore.connections.map((connection) => {
+
+        {connectionsStore.connectionsKeys.length > 0
+          ? connectionsStore.connectionsKeys.map((key) => {
+              const connection = connectionsStore.connections[key];
+
               const fromNode = nodesStore.nodes[connection.fromId];
               const toNode = nodesStore.nodes[connection.toId];
 
@@ -40,11 +44,13 @@ const ConnectionsContainer: React.FC = memo(
 
               const from = {
                 x: fromNode.left,
+
                 y: fromNode.top,
               };
 
               const to = {
                 x: toNode.left,
+
                 y: toNode.top,
               };
 

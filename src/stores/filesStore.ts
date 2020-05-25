@@ -1,6 +1,8 @@
+import update from 'immutability-helper';
 import { action, decorate, observable } from 'mobx';
 
 import { RootStore } from '.';
+import { ConnectionMap } from '../types/Connection';
 import { FileData } from '../types/FileData';
 
 class FilesStore {
@@ -22,8 +24,23 @@ class FilesStore {
       return;
     }
 
+    let connections: ConnectionMap = {};
+
+    this.file.connections.forEach((connection) => {
+      const key = `${connection.fromId}|${connection.toId}`;
+
+      connections = update(connections, {
+        [key]: {
+          $set: {
+            fromId: connection.fromId,
+            toId: connection.toId,
+          },
+        },
+      });
+    });
+
     this.rootStore.nodesStore.nodes = this.file.nodes;
-    this.rootStore.connectionsStore.connections = this.file.connections;
+    this.rootStore.connectionsStore.connections = connections;
   }
 }
 

@@ -5,6 +5,7 @@ import { useDrop } from 'react-dnd';
 import { RootStoreContext } from '../../stores';
 import { ItemTypes } from '../../types/ItemTypes';
 import { Node } from '../../types/Node';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 import ContextMenu from '../ContextMenu';
 import { DraggableDialogueNode } from '../Nodes';
 import ConnectionsContainer from './ConnectionsContainer';
@@ -12,6 +13,7 @@ import { Container } from './styles';
 
 const DragAndDropContainerGlobal: React.FC = observer(() => {
   const [showContextMenu, setShowContextMenu] = useState(false);
+  const { width } = useWindowDimensions();
   const { nodesStore, filesStore } = useContext(RootStoreContext);
 
   const moveNode = useCallback(
@@ -29,7 +31,10 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
     const numberOfNodes = nodesStore.nodesKeys.length;
     const identifier = `id:node${numberOfNodes}`;
 
-    addNode(identifier, event.clientX, event.clientY);
+    const xPos = event.clientX - 0.15 * width - 75;
+    const yPos = event.clientY - 50;
+
+    addNode(identifier, xPos, yPos);
   };
 
   const loadFileClick = () => {

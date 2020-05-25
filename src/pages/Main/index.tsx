@@ -38,7 +38,7 @@ const Main: React.FC = observer(() => {
 
   const deleteNode = (id: string) => {
     nodesStore.deleteNode(id);
-    connectionsStore.removeConnnections(id);
+    connectionsStore.removeConnnection(id);
   };
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {
@@ -61,6 +61,32 @@ const Main: React.FC = observer(() => {
     }
 
     nodesStore.setActiveNode('', null);
+  };
+
+  const handleGetInitialConnections = (id: string) => {
+    const tempIn: { label: string; value: string }[] = [];
+    const tempOut: { label: string; value: string }[] = [];
+
+    connectionsStore.connectionsKeys.forEach((key) => {
+      if (connectionsStore.connections[key].fromId === id) {
+        tempOut.push({
+          label: connectionsStore.connections[key].toId,
+          value: connectionsStore.connections[key].toId,
+        });
+      }
+
+      if (connectionsStore.connections[key].toId === id) {
+        tempIn.push({
+          label: connectionsStore.connections[key].fromId,
+          value: connectionsStore.connections[key].fromId,
+        });
+      }
+    });
+
+    return {
+      inConnections: tempIn,
+      outConnections: tempOut,
+    };
   };
 
   const renderModal = () => {
@@ -95,36 +121,9 @@ const Main: React.FC = observer(() => {
       const initialText = node.text;
       const initialDialogueType = node.dialogueType;
 
-      const initialInConnections = [];
-      const initialOutConnections = [];
-
-      for (let i = 0; i < connectionsStore.connections.length; i += 1) {
-        if (connectionsStore.connections[i].toId === node.id) {
-          if (
-            nodesStore.nodes[connectionsStore.connections[i].fromId] !==
-            undefined
-          ) {
-            initialInConnections.push({
-              label: connectionsStore.connections[i].fromId,
-              value: connectionsStore.connections[i].fromId,
-            });
-          }
-        }
-      }
-
-      for (let i = 0; i < connectionsStore.connections.length; i += 1) {
-        if (connectionsStore.connections[i].fromId === node.id) {
-          if (
-            nodesStore.nodes[connectionsStore.connections[i].fromId] !==
-            undefined
-          ) {
-            initialOutConnections.push({
-              label: connectionsStore.connections[i].toId,
-              value: connectionsStore.connections[i].toId,
-            });
-          }
-        }
-      }
+      const { inConnections, outConnections } = handleGetInitialConnections(
+        node.id,
+      );
 
       return (
         <Modal
@@ -141,8 +140,8 @@ const Main: React.FC = observer(() => {
                 onSubmit={handleEditFormSubmit}
                 initialData={{
                   text: initialText,
-                  inConnections: initialInConnections,
-                  outConnections: initialOutConnections,
+                  inConnections,
+                  outConnections,
                   type: initialDialogueType,
                 }}
               >
