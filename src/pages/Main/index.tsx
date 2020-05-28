@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import { DragAroundCustomLayer } from '../../components/DragAndDrop';
 import Modal from '../../components/Modal';
 import Select from '../../components/Select';
+import Sidebar from '../../components/Sidebar';
 import { Space } from '../../components/Space';
 import TextArea from '../../components/TextArea';
 import { RootStoreContext } from '../../stores';
@@ -130,7 +131,7 @@ const Main: React.FC = observer(() => {
           show={nodesStore.showModal}
           onBackdropClick={() => nodesStore.setActiveNode('', null)}
         >
-          <ModalContainer width={1000} height={800}>
+          <ModalContainer width={1024} height={800}>
             <ModalTitle>
               {`Editing ${nodesStore.activeNodeModal.id}`}
             </ModalTitle>
@@ -180,14 +181,14 @@ const Main: React.FC = observer(() => {
                   />
                 </BoxContainer>
                 <Space width="100%" height={20} />
-                <BoxContainer>
+                <Center>
                   <TextArea
                     name="text"
                     autoFocus
                     placeholder="Dialogue text"
                     width={960}
                   />
-                </BoxContainer>
+                </Center>
                 <Space width="100%" height={30} />
                 <Center>
                   <Button onClick={() => editNodeFormRef.current?.submitForm()}>
@@ -206,6 +207,7 @@ const Main: React.FC = observer(() => {
 
   return (
     <>
+      <Sidebar />
       {renderModal()}
       <LoadModal />
       <DndProvider backend={backend}>

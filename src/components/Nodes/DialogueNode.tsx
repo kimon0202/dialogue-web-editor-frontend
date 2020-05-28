@@ -1,13 +1,15 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { RootStoreContext } from '../../stores';
 import {
+  Body,
   Container,
   ContentContainer,
   DeleteIcon,
   EditIcon,
-  IconsContainer,
+  Header,
+  Title,
 } from './styles';
 
 interface DialogueNodeProps {
@@ -16,6 +18,7 @@ interface DialogueNodeProps {
 
 const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   const { nodesStore } = useContext(RootStoreContext);
+  const [nodeBody, setNodeBody] = useState(nodesStore.nodes[identifier].text);
 
   const deleteNode = () => {
     nodesStore.setActiveNode(identifier, 'delete');
@@ -27,13 +30,22 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
 
   return (
     <Container>
-      <IconsContainer>
-        {identifier === 'id:rootNode' ? null : (
-          <DeleteIcon onClick={deleteNode} />
-        )}
-        <EditIcon onClick={editNode} />
-      </IconsContainer>
-      <ContentContainer>{identifier}</ContentContainer>
+      <Header>
+        <Title>{identifier}</Title>
+        <EditIcon fontSize="small" onClick={editNode} />
+        <DeleteIcon fontSize="small" onClick={deleteNode} />
+      </Header>
+      <ContentContainer>
+        <Body
+          defaultValue={nodeBody}
+          placeholder="Dialogue Text..."
+          onDoubleClick={editNode}
+          onChange={(event) => setNodeBody(event.target.value)}
+          onBlur={() => {
+            nodesStore.nodes[identifier].text = nodeBody;
+          }}
+        />
+      </ContentContainer>
     </Container>
   );
 });

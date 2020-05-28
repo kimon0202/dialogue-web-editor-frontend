@@ -1,26 +1,21 @@
-import { darken } from 'polished';
+import { Close, Menu } from '@material-ui/icons';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background: ${(props) => darken(0.3, props.theme.colors.background)};
-`;
+interface VerticalContainerProps {
+  isOpen: boolean;
+}
 
 export const TitleContainer = styled.div`
-  width: 100%;
-  height: 10%;
+  height: 100%;
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
-  font-size: 24px;
+  font-size: 0.8em;
   font-weight: bold;
 
   color: ${(props) => props.theme.colors.text};
-
-  padding-top: 20px;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -31,4 +26,43 @@ export const ButtonsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  padding: 16px;
+`;
+
+export const Navbar = styled.div`
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 16px 32px;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+
+  font-size: 30px;
+  position: sticky;
+`;
+
+export const MenuIcon = styled(Menu)`
+  color: white;
+  cursor: pointer;
+`;
+
+export const CloseIcon = styled(Close)`
+  color: white;
+  cursor: pointer;
+`;
+
+// Add smooth transition later
+
+export const Container = styled.div`
+  position: absolute;
+  z-index: 400;
+  top: 10vh;
+  left: 0;
+  width: 15vw;
+  height: 90vh;
+
+  background: ${(props) => props.theme.colors.backgroundSecondary};
 `;

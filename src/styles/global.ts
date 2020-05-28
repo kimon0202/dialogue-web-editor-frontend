@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -13,26 +13,11 @@ export const GlobalStyles = createGlobalStyle`
   html, body {
     width: 100vw;
     height: 100vh;
-    background: ${(props) => props.theme.colors.backgroundSecondary};
+    background: ${(props) => props.theme.colors.background};
   }
 
   #root {
     width: 100%;
     height: 100%;
   }
-`;
-
-export const SidebarContainer = styled.div`
-  width: 15vw;
-  height: 100vh;
-`;
-
-export const ContentContainer = styled.div`
-  width: 85vw;
-  height: 100vh;
-`;
-
-export const RootContainer = styled.div`
-  display: flex;
-  flex-direction: row;
 `;

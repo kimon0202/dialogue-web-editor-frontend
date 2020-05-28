@@ -5,16 +5,16 @@ import { useDrop } from 'react-dnd';
 import { RootStoreContext } from '../../stores';
 import { ItemTypes } from '../../types/ItemTypes';
 import { Node } from '../../types/Node';
-import useWindowDimensions from '../../utils/useWindowDimensions';
 import ContextMenu from '../ContextMenu';
 import { DraggableDialogueNode } from '../Nodes';
 import ConnectionsContainer from './ConnectionsContainer';
 import { Container } from './styles';
 
 const DragAndDropContainerGlobal: React.FC = observer(() => {
-  const [showContextMenu, setShowContextMenu] = useState(false);
-  const { width } = useWindowDimensions();
   const { nodesStore, filesStore } = useContext(RootStoreContext);
+
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [nodeCount, setNodeCount] = useState(nodesStore.nodesKeys.length);
 
   const moveNode = useCallback(
     (id: string, left: number, top: number) => {
@@ -24,15 +24,15 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
   );
 
   const addNode = (id: string, left: number, top: number) => {
+    setNodeCount(nodeCount + 1);
     nodesStore.addNode(id, left, top);
   };
 
   const handleAddNode = (event: React.MouseEvent<any, MouseEvent>) => {
-    const numberOfNodes = nodesStore.nodesKeys.length;
-    const identifier = `id:node${numberOfNodes}`;
+    const identifier = `id:node${nodeCount}`;
 
-    const xPos = event.clientX - 0.15 * width - 75;
-    const yPos = event.clientY - 50;
+    const xPos = event.clientX - 100;
+    const yPos = event.clientY - 75;
 
     addNode(identifier, xPos, yPos);
   };

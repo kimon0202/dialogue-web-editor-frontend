@@ -25,9 +25,9 @@ const Connection: React.FC<Props> = ({
       strokeWidth={2}
       strokeLinecap="round"
       markerUnits={2}
-      d={`M${x1 + 75},${y1 + 50}L${(x1 + x2 + 150) / 2},${
-        (y1 + y2 + 100) / 2
-      }L${x2 + 75},${y2 + 50}`}
+      d={`M${x1 + 100},${y1 + 75}L${(x1 + x2 + 200) / 2},${
+        (y1 + y2 + 150) / 2
+      }L${x2 + 100},${y2 + 75}`}
       markerMid={markerMid}
     />
   );

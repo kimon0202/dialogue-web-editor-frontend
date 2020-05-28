@@ -1,15 +1,24 @@
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { RootStoreContext } from '../../stores';
 import { Connection } from '../../types/Connection';
 import { FileData } from '../../types/FileData';
 import Button from '../Button';
 import { Space } from '../Space';
-import { ButtonsContainer, Container, TitleContainer } from './styles';
+import {
+  ButtonsContainer,
+  CloseIcon,
+  Container,
+  MenuIcon,
+  Navbar,
+  TitleContainer,
+} from './styles';
 
 const Sidebar: React.FC = observer(() => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const { nodesStore, connectionsStore, filesStore } = useContext(
     RootStoreContext,
   );
@@ -32,6 +41,7 @@ const Sidebar: React.FC = observer(() => {
   };
 
   const handleFileDownload = async () => {
+    handleSave();
     const json = JSON.stringify(filesStore.file);
     const blob = new Blob([json], { type: 'application/json' });
     const href = await URL.createObjectURL(blob);
@@ -44,31 +54,65 @@ const Sidebar: React.FC = observer(() => {
     document.body.removeChild(link);
   };
 
+  const handleMenuClick = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <Container>
-      <TitleContainer>Dialogue Editor</TitleContainer>
-      <Space width="100%" height={30} />
-      <ButtonsContainer>
-        <Button
-          onClick={() => {
-            nodesStore.reset();
-            nodesStore.setActiveNode('', null);
-          }}
-        >
-          Clear
-        </Button>
-        <Space width="100%" height={20} />
-        <Button onClick={handleSave}>Save</Button>
-        <Space width="100%" height={20} />
-        <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
-        {filesStore.file.name ? (
-          <>
+    <>
+      <Navbar>
+        {sidebarOpen ? (
+          <CloseIcon fontSize="inherit" onClick={handleMenuClick} />
+        ) : (
+          <MenuIcon fontSize="inherit" onClick={handleMenuClick} />
+        )}
+        <Space width={32} height="100%" />
+        <TitleContainer>Dialogue Editor</TitleContainer>
+      </Navbar>
+      {sidebarOpen ? (
+        <Container>
+          <ButtonsContainer>
+            <Button
+              onClick={() => {
+                nodesStore.reset();
+                nodesStore.setActiveNode('', null);
+              }}
+            >
+              Clear
+            </Button>
             <Space width="100%" height={20} />
-            <Button onClick={() => handleFileDownload()}>Download File</Button>
-          </>
-        ) : null}
-      </ButtonsContainer>
-    </Container>
+            <Button onClick={handleFileDownload}>Download</Button>
+            <Space width="100%" height={20} />
+            <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
+          </ButtonsContainer>
+        </Container>
+      ) : null}
+      {/* <Container>
+        <Space width="100%" height={30} />
+        <ButtonsContainer>
+          <Button
+            onClick={() => {
+              nodesStore.reset();
+              nodesStore.setActiveNode('', null);
+            }}
+          >
+            Clear
+          </Button>
+          <Space width="100%" height={20} />
+          <Button onClick={handleSave}>Save</Button>
+          <Space width="100%" height={20} />
+          <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
+          {filesStore.file.name ? (
+            <>
+              <Space width="100%" height={20} />
+              <Button onClick={() => handleFileDownload()}>
+                Download File
+              </Button>
+            </>
+          ) : null}
+        </ButtonsContainer>
+      </Container> */}
+    </>
   );
 });
 

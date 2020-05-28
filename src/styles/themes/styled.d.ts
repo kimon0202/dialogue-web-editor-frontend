@@ -10,6 +10,10 @@ declare module 'styled-components' {
       accent: string;
       text: string;
       textSecondary: string;
+      success: string;
+      info: string;
+      warning: string;
+      danger: string;
     };
   }
 }

@@ -2,6 +2,7 @@
   width: 300px;
   height: 38px;
   color: #000;
+  outline: none;
 }
 
 .single {
@@ -15,10 +16,6 @@
   font-size: 18px;
 }
 
-.multiple {
-  background: #A9A3B6;
-}
-
 .select-group {
   display: flex;
   flex-direction: column;
@@ -27,5 +24,8 @@
 }
 
 .select-group > label {
+  color: #fff;
   margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
 }

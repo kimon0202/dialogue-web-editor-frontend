@@ -3,11 +3,15 @@ import { DefaultTheme } from 'styled-components';
 export const light: DefaultTheme = {
   name: 'light',
   colors: {
-    background: '#f0f0f0',
-    backgroundSecondary: '#eaeaea',
-    primary: '#e43f5a',
+    background: '#fff',
+    backgroundSecondary: '#F7F9FC',
+    primary: '#3511B8',
     text: '#000',
     textSecondary: '#fff',
-    accent: '#e0ac1b',
+    accent: '#a239ca',
+    success: '#1B7C16',
+    info: '#0078A8',
+    warning: '#FCA105',
+    danger: '#D81E1E',
   },
 };

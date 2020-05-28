@@ -5,17 +5,23 @@ import { Backdrop, Container } from './styles';
 interface Props {
   children?: React.ReactElement | string;
   show: boolean;
+  showBackdrop?: boolean;
   onBackdropClick?(): void;
 }
 
-const Modal: React.FC<Props> = ({ children, show, onBackdropClick }) => {
+const Modal: React.FC<Props> = ({
+  children,
+  show,
+  onBackdropClick,
+  showBackdrop = true,
+}) => {
   if (!show) {
     return null;
   }
 
   return (
     <>
-      <Backdrop onClick={onBackdropClick} />
+      {showBackdrop ? <Backdrop onClick={onBackdropClick} /> : null}
       <Container>{children}</Container>
     </>
   );
