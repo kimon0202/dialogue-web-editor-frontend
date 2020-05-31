@@ -6,7 +6,7 @@ import backend from 'react-dnd-html5-backend';
 
 import Button from '../../components/Button';
 import { DragAroundCustomLayer } from '../../components/DragAndDrop';
-import Modal from '../../components/Modal';
+import PortalModal from '../../components/Modal/PortalModal';
 import Select from '../../components/Select';
 import Sidebar from '../../components/Sidebar';
 import { Space } from '../../components/Space';
@@ -93,8 +93,8 @@ const Main: React.FC = observer(() => {
   const renderModal = () => {
     if (nodesStore.activeNodeModal.mode === 'delete') {
       return (
-        <Modal
-          show={nodesStore.showModal}
+        <PortalModal
+          isVisible={nodesStore.showModal}
           onBackdropClick={() => nodesStore.setActiveNode('', null)}
         >
           <ModalContainer>
@@ -114,7 +114,7 @@ const Main: React.FC = observer(() => {
               </Button>
             </ModalContent>
           </ModalContainer>
-        </Modal>
+        </PortalModal>
       );
     }
     if (nodesStore.activeNodeModal.mode === 'edit') {
@@ -127,8 +127,8 @@ const Main: React.FC = observer(() => {
       );
 
       return (
-        <Modal
-          show={nodesStore.showModal}
+        <PortalModal
+          isVisible={nodesStore.showModal}
           onBackdropClick={() => nodesStore.setActiveNode('', null)}
         >
           <ModalContainer width={1024} height={800}>
@@ -185,7 +185,7 @@ const Main: React.FC = observer(() => {
                   <TextArea
                     name="text"
                     autoFocus
-                    placeholder="Dialogue text"
+                    placeholder="Dialogue text..."
                     width={960}
                   />
                 </Center>
@@ -198,7 +198,7 @@ const Main: React.FC = observer(() => {
               </Form>
             </ModalContent>
           </ModalContainer>
-        </Modal>
+        </PortalModal>
       );
     }
 

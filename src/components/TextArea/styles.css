@@ -1,0 +1,39 @@
+.input-control {
+  font-size: 18px;
+  padding: 10px;
+  resize: none;
+  outline: none;
+}
+
+.input-control:focus {
+  box-shadow: none;
+}
+
+label.label {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+
+  transition: all 300ms;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
+  -o-transition: all 300ms;
+
+  color: #999;
+  font-weight: normal;
+}
+
+.input-control:focus ~ label.label {
+  left: 5px;
+  top: -10px;
+  background: #fff;
+  padding: 0 5px;
+}
+
+label.label.active {
+  left: 5px;
+  top: -10px;
+  background: #fff;
+  padding: 0 5px;
+}

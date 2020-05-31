@@ -1,6 +1,7 @@
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
+import { useTransition } from 'react-spring';
 
 import { RootStoreContext } from '../../stores';
 import { Connection } from '../../types/Connection';
@@ -8,6 +9,7 @@ import { FileData } from '../../types/FileData';
 import Button from '../Button';
 import { Space } from '../Space';
 import {
+  AnimatedIconContainer,
   ButtonsContainer,
   CloseIcon,
   Container,
@@ -18,6 +20,18 @@ import {
 
 const Sidebar: React.FC = observer(() => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const trnasitions = useTransition(sidebarOpen, null, {
+    from: {
+      position: 'absolute',
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+    },
+    leave: {
+      opacity: 0,
+    },
+  });
 
   const { nodesStore, connectionsStore, filesStore } = useContext(
     RootStoreContext,
@@ -32,7 +46,6 @@ const Sidebar: React.FC = observer(() => {
 
     const file: FileData = {
       name: 'NewFile',
-      createdAt: Date.now(),
       nodes: nodesStore.nodes,
       connections,
     };
@@ -43,7 +56,9 @@ const Sidebar: React.FC = observer(() => {
   const handleFileDownload = async () => {
     handleSave();
     const json = JSON.stringify(filesStore.file);
-    const blob = new Blob([json], { type: 'application/json' });
+    const blob = new Blob([json], {
+      type: 'application/json',
+    });
     const href = await URL.createObjectURL(blob);
 
     const link = document.createElement('a');
@@ -61,34 +76,21 @@ const Sidebar: React.FC = observer(() => {
   return (
     <>
       <Navbar>
-        {sidebarOpen ? (
-          <CloseIcon fontSize="inherit" onClick={handleMenuClick} />
-        ) : (
-          <MenuIcon fontSize="inherit" onClick={handleMenuClick} />
+        {trnasitions.map(({ item, key, props }) =>
+          item ? (
+            <AnimatedIconContainer key={key} style={props}>
+              <CloseIcon fontSize="inherit" onClick={handleMenuClick} />
+            </AnimatedIconContainer>
+          ) : (
+            <AnimatedIconContainer key={key} style={props}>
+              <MenuIcon fontSize="inherit" onClick={handleMenuClick} />
+            </AnimatedIconContainer>
+          ),
         )}
         <Space width={32} height="100%" />
         <TitleContainer>Dialogue Editor</TitleContainer>
       </Navbar>
-      {sidebarOpen ? (
-        <Container>
-          <ButtonsContainer>
-            <Button
-              onClick={() => {
-                nodesStore.reset();
-                nodesStore.setActiveNode('', null);
-              }}
-            >
-              Clear
-            </Button>
-            <Space width="100%" height={20} />
-            <Button onClick={handleFileDownload}>Download</Button>
-            <Space width="100%" height={20} />
-            <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
-          </ButtonsContainer>
-        </Container>
-      ) : null}
-      {/* <Container>
-        <Space width="100%" height={30} />
+      <Container height={sidebarOpen ? 'auto' : 0} duration={400}>
         <ButtonsContainer>
           <Button
             onClick={() => {
@@ -99,19 +101,11 @@ const Sidebar: React.FC = observer(() => {
             Clear
           </Button>
           <Space width="100%" height={20} />
-          <Button onClick={handleSave}>Save</Button>
+          <Button onClick={handleFileDownload}>Download</Button>
           <Space width="100%" height={20} />
           <Button onClick={() => filesStore.setModal(true)}>Load File</Button>
-          {filesStore.file.name ? (
-            <>
-              <Space width="100%" height={20} />
-              <Button onClick={() => handleFileDownload()}>
-                Download File
-              </Button>
-            </>
-          ) : null}
         </ButtonsContainer>
-      </Container> */}
+      </Container>
     </>
   );
 });

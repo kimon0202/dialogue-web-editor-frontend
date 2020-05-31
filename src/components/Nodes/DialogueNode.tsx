@@ -31,7 +31,7 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   return (
     <Container>
       <Header>
-        <Title>{identifier}</Title>
+        <Title>{identifier.replace('id:', '')}</Title>
         <EditIcon fontSize="small" onClick={editNode} />
         <DeleteIcon fontSize="small" onClick={deleteNode} />
       </Header>

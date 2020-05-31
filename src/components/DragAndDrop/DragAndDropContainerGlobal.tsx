@@ -61,9 +61,9 @@ const DragAndDropContainerGlobal: React.FC = observer(() => {
     return <DraggableDialogueNode key={key} id={key} {...item} />;
   };
 
-  if (nodesStore.showModal || filesStore.loadFileModal) {
-    return null;
-  }
+  // if (nodesStore.showModal || filesStore.loadFileModal) {
+  //   return null;
+  // }
 
   return (
     <>

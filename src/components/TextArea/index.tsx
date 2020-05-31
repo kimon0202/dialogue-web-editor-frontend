@@ -1,5 +1,9 @@
+import './styles.css';
+
 import { useField } from '@unform/core';
 import React, { useEffect, useRef } from 'react';
+
+import { InputControl } from './styles';
 
 interface Props {
   name: string;
@@ -18,7 +22,7 @@ const TextArea: React.FC<TextareaProps> = ({
   ...rest
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  const labelRef = useRef<HTMLLabelElement>(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
   useEffect(() => {
@@ -31,29 +35,37 @@ const TextArea: React.FC<TextareaProps> = ({
     });
   }, [fieldName, registerField]);
 
-  return (
-    <div>
-      {label ? <label htmlFor={fieldName}>{label}</label> : null}
+  const handleBlur = () => {
+    if (textareaRef.current?.value !== '') {
+      labelRef.current?.classList.add('active');
+    } else {
+      labelRef.current?.classList.remove('active');
+    }
+  };
 
+  return (
+    <InputControl onBlur={handleBlur}>
       <textarea
         id={fieldName}
         ref={textareaRef}
         defaultValue={defaultValue}
+        className="input-control"
         style={{
           width,
           height,
-          fontSize: 18,
-          padding: 10,
-          resize: 'none',
-          outline: 'none',
         }}
         autoCorrect="off"
         autoComplete="off"
+        onBlur={handleBlur}
         {...rest}
       />
-
+      {label ? (
+        <label className="label" htmlFor={fieldName} ref={labelRef}>
+          {label}
+        </label>
+      ) : null}
       {error ? <span>{error}</span> : null}
-    </div>
+    </InputControl>
   );
 };
 

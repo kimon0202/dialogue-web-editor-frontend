@@ -1,9 +1,7 @@
 import { Close, Menu } from '@material-ui/icons';
+import AnimateHeight from 'react-animate-height';
+import { animated } from 'react-spring';
 import styled from 'styled-components';
-
-interface VerticalContainerProps {
-  isOpen: boolean;
-}
 
 export const TitleContainer = styled.div`
   height: 100%;
@@ -56,13 +54,29 @@ export const CloseIcon = styled(Close)`
 
 // Add smooth transition later
 
-export const Container = styled.div`
+interface ContainerProps {
+  height: number | string;
+}
+
+export const Container = styled(AnimateHeight)`
   position: absolute;
   z-index: 400;
   top: 10vh;
   left: 0;
-  width: 15vw;
-  height: 90vh;
+  width: 400px;
+  height: ${(props: ContainerProps) => props.height};
 
   background: ${(props) => props.theme.colors.backgroundSecondary};
+`;
+
+export const AnimatedIconContainer = styled(animated.div)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90px;
+  height: 100%;
+
+  padding: 8px 16px;
+  margin-right: 4px;
 `;

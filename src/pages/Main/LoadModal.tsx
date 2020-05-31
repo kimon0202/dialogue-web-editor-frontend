@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-import Modal from '../../components/Modal';
+import PortalModal from '../../components/Modal/PortalModal';
 import { RootStoreContext } from '../../stores';
 import { ModalContainer, ModalContent, ModalTitle } from './styles';
 
@@ -35,9 +35,29 @@ const LoadModal: React.FC = observer(() => {
     multiple: false,
   });
 
+  // return (
+  //   <Modal
+  //     show={filesStore.loadFileModal}
+  //     onBackdropClick={() => filesStore.setModal(false)}
+  //   >
+  //     <ModalContainer>
+  //       <ModalTitle>Load File</ModalTitle>
+  //       <ModalContent>
+  //         <div {...getRootProps()}>
+  //           <input {...getInputProps()} />
+  //           {isDragActive ? (
+  //             <p>Drop the files here...</p>
+  //           ) : (
+  //             <p>Drag and drop files / Click here</p>
+  //           )}
+  //         </div>
+  //       </ModalContent>
+  //     </ModalContainer>
+  //   </Modal>
+  // );
   return (
-    <Modal
-      show={filesStore.loadFileModal}
+    <PortalModal
+      isVisible={filesStore.loadFileModal}
       onBackdropClick={() => filesStore.setModal(false)}
     >
       <ModalContainer>
@@ -53,7 +73,7 @@ const LoadModal: React.FC = observer(() => {
           </div>
         </ModalContent>
       </ModalContainer>
-    </Modal>
+    </PortalModal>
   );
 });
 
