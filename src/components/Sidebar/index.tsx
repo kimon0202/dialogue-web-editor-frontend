@@ -95,7 +95,6 @@ const Sidebar: React.FC = observer(() => {
           <Button
             onClick={() => {
               nodesStore.reset();
-              nodesStore.setActiveNode('', null);
             }}
           >
             Clear

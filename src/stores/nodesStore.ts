@@ -27,11 +27,6 @@ class NodesStore {
     },
   };
 
-  activeNodeModal: ActiveNodeModal = {
-    id: '',
-    mode: null,
-  };
-
   public updateNodePosition(id: string, left: number, top: number) {
     this.nodes = update(this.nodes, {
       [id]: {
@@ -64,13 +59,6 @@ class NodesStore {
     });
   }
 
-  public setActiveNode(id: string, mode: 'delete' | 'edit' | null) {
-    this.activeNodeModal = {
-      id,
-      mode,
-    };
-  }
-
   public reset() {
     this.nodes = {
       'id:rootNode': {
@@ -85,44 +73,17 @@ class NodesStore {
     this.rootStore.filesStore.file = {} as FileData;
   }
 
-  public get activeNode() {
-    return this.nodes[this.activeNodeModal.id];
-  }
-
-  public get activeNodeOptions() {
-    const opts = this.nodesKeys.filter((key) => key !== this.activeNode.id);
-    const possibleOptions: { label: string; value: string }[] = [];
-
-    opts.forEach((option) => {
-      possibleOptions.push({
-        label: option,
-        value: option,
-      });
-    });
-
-    return possibleOptions;
-  }
-
   public get nodesKeys() {
     return Object.keys(this.nodes);
-  }
-
-  public get showModal() {
-    return this.activeNodeModal.id !== '';
   }
 }
 
 decorate(NodesStore, {
   nodes: observable,
-  activeNodeModal: observable,
   updateNodePosition: action,
   addNode: action,
-  setActiveNode: action,
   reset: action,
-  activeNode: computed,
-  activeNodeOptions: computed,
   nodesKeys: computed,
-  showModal: computed,
 });
 
 export default NodesStore;

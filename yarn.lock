@@ -8325,6 +8325,11 @@ popper.js@^1.16.1-lts:
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
+portal-modals@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/portal-modals/-/portal-modals-1.1.1.tgz#9a6cfe9ff9cb2fd34674737ea0df2c7800736800"
+  integrity sha512-GHpDvFHFAgrnCAHlOv/83blxr/zcwy9VNl7IeIU2xqdZOW3CkOvb1y0exBhGvruulphLzGVkmLF7xVmhopXhKg==
+
 portfinder@^1.0.25:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.25.tgz#254fd337ffba869f4b9d37edc298059cb4d35eca"

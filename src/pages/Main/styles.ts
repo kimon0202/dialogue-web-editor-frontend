@@ -1,4 +1,4 @@
-import { Form as RawForm } from '@unform/web';
+import { Form as RawForm } from '@unform/core';
 import styled from 'styled-components';
 
 interface ModalContainerProps {
