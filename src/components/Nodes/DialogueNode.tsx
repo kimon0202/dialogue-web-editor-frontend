@@ -6,7 +6,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { RootStoreContext } from '../../stores';
 import { NodeEditFormData } from '../../types/Node';
 import Button from '../Button';
-import Select from '../Select';
+import FormSelect from '../Select/FormSelect';
 import { Space } from '../Space';
 import TextArea from '../TextArea';
 import {
@@ -150,27 +150,58 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
             >
               <BoxContainer>
                 {node.id === 'id:rootNode' ? null : (
-                  <Select
+                  <FormSelect
                     name="inConnections"
                     label="In Connections"
-                    multiple
+                    placeholder="Select in connections..."
+                    isMulti
                     options={connectionOptions}
+                    width={300}
+                    containerStyles={{
+                      backgroundColor: '#fff',
+                    }}
+                    selectedItemStyles={{
+                      color: '#000',
+                    }}
+                    inputStyles={{
+                      color: '#000',
+                    }}
+                    listStyles={{
+                      color: '#000',
+                    }}
                   />
                 )}
-                <Select
+                <FormSelect
                   name="outConnections"
                   label="Out Connections"
-                  multiple
+                  placeholder="Select out connections..."
+                  isMulti
                   options={connectionOptions}
+                  width={300}
+                  containerStyles={{
+                    backgroundColor: '#fff',
+                  }}
+                  inputStyles={{
+                    color: '#000',
+                  }}
+                  listStyles={{
+                    color: '#000',
+                  }}
                 />
-                <Select
+                <FormSelect
                   name="type"
                   label="Dialogue Type"
+                  placeholder="Select dialogue type..."
+                  containerStyles={{
+                    backgroundColor: '#fff',
+                  }}
+                  inputStyles={{
+                    color: '#000',
+                  }}
+                  listStyles={{
+                    color: '#000',
+                  }}
                   options={[
-                    {
-                      label: 'Select Dialogue Type...',
-                      value: 'None',
-                    },
                     {
                       label: 'Player',
                       value: 'Player',
@@ -180,6 +211,7 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
                       value: 'AICharacter',
                     },
                   ]}
+                  width={300}
                 />
               </BoxContainer>
               <Space width="100%" height={20} />

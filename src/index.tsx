@@ -19,3 +19,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+/**
+ * TODO: Select component receive initial values
+ * TODO: Connections not showing properly
+ */

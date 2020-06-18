@@ -1,5 +1,5 @@
 import { Delete, Edit } from '@material-ui/icons';
-import { Form as RawForm } from '@unform/core';
+import { Form as RawForm } from '@unform/web';
 import styled from 'styled-components';
 
 export const Container = styled.div`
