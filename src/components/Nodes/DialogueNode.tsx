@@ -70,7 +70,7 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   );
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {
-    // console.log(data);
+    console.log(data);
     const { inConnections, outConnections, text, type } = data;
 
     const node = nodesStore.nodes[identifier];

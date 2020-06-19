@@ -87,16 +87,23 @@ export const ErrorMessage = styled.span`
 `;
 
 export const SelectedItemsContainer = styled.div`
+  min-width: 200px;
   width: auto;
-  height: 100%;
+  min-height: 100%;
   padding: 0 4px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const SelectedItem = styled.div`
+  color: #000;
   height: 60%;
   width: fit-content;
   display: flex;
@@ -109,6 +116,7 @@ export const SelectedItem = styled.div`
   border-radius: 4px;
 
   margin-right: ${(props: SelectedItemProps) => (props.isLast ? '0px' : '4px')};
+  user-select: none;
 `;
 
 export const SelectedItemText = styled.p`

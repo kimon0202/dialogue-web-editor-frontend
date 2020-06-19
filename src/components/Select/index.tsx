@@ -44,6 +44,7 @@ export interface SelectProps extends SelectStyles {
 // TODO: Make component focused when Arrow Icon is clicked
 // TODO: Focus input component when arrow icon is clciked
 // TODO: Remove options from array when default values is received
+// TODO: Add scrollable selected items container fro multi select component
 // // TODO: Receive default values
 // // TODO: Multi Select state management
 // // TODO: Add override styles props for each component of select component
@@ -195,7 +196,10 @@ const Select = forwardRef<{ state: OptionBase[] }, SelectProps>(
           style={containerStyles}
         >
           {isMulti && values.length > 0 ? (
-            <SelectedItemsContainer style={selectedItemsContainerStyles}>
+            <SelectedItemsContainer
+              style={selectedItemsContainerStyles}
+              className="dragscroll"
+            >
               {values.map((value, index, arr) => (
                 <SelectedItem
                   isLast={index === arr.length - 1}

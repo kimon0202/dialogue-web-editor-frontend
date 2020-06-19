@@ -28,14 +28,12 @@ const FormSelect: React.FC<FormSelectProps> = ({
         if (isMulti) {
           if (!selectRef.current?.state) return [];
 
-          return selectRef.current.state.map(
-            (option: OptionBase) => option.value,
-          );
+          return selectRef.current.state;
         }
 
-        if (!selectRef.current?.state[0]) return '';
+        if (!selectRef.current?.state[0]) return { label: '', value: '' };
 
-        return selectRef.current.state[0].value;
+        return selectRef.current.state[0];
       },
     });
   }, [fieldName, registerField, isMulti]);
