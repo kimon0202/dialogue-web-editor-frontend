@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/dialogue-web-editor-frontend/static/css/main.830334fe.chunk.css",
-    "main.js": "/dialogue-web-editor-frontend/static/js/main.a38c0be3.chunk.js",
-    "main.js.map": "/dialogue-web-editor-frontend/static/js/main.a38c0be3.chunk.js.map",
-    "runtime-main.js": "/dialogue-web-editor-frontend/static/js/runtime-main.3bf627d7.js",
-    "runtime-main.js.map": "/dialogue-web-editor-frontend/static/js/runtime-main.3bf627d7.js.map",
-    "static/js/2.ade21948.chunk.js": "/dialogue-web-editor-frontend/static/js/2.ade21948.chunk.js",
-    "static/js/2.ade21948.chunk.js.map": "/dialogue-web-editor-frontend/static/js/2.ade21948.chunk.js.map",
+    "main.css": "/dialogue-web-editor-frontend/static/css/main.17b38c0c.chunk.css",
+    "main.js": "/dialogue-web-editor-frontend/static/js/main.7ce24f2e.chunk.js",
+    "main.js.map": "/dialogue-web-editor-frontend/static/js/main.7ce24f2e.chunk.js.map",
+    "runtime-main.js": "/dialogue-web-editor-frontend/static/js/runtime-main.1573c17a.js",
+    "runtime-main.js.map": "/dialogue-web-editor-frontend/static/js/runtime-main.1573c17a.js.map",
+    "static/js/2.8cd6b6e4.chunk.js": "/dialogue-web-editor-frontend/static/js/2.8cd6b6e4.chunk.js",
+    "static/js/2.8cd6b6e4.chunk.js.map": "/dialogue-web-editor-frontend/static/js/2.8cd6b6e4.chunk.js.map",
     "index.html": "/dialogue-web-editor-frontend/index.html",
-    "precache-manifest.c883c05960780264caa346346edd6e1e.js": "/dialogue-web-editor-frontend/precache-manifest.c883c05960780264caa346346edd6e1e.js",
+    "precache-manifest.22f44922a828c36fd8a18cbabbeac941.js": "/dialogue-web-editor-frontend/precache-manifest.22f44922a828c36fd8a18cbabbeac941.js",
     "service-worker.js": "/dialogue-web-editor-frontend/service-worker.js",
-    "static/css/main.830334fe.chunk.css.map": "/dialogue-web-editor-frontend/static/css/main.830334fe.chunk.css.map",
-    "static/js/2.ade21948.chunk.js.LICENSE.txt": "/dialogue-web-editor-frontend/static/js/2.ade21948.chunk.js.LICENSE.txt"
+    "static/css/main.17b38c0c.chunk.css.map": "/dialogue-web-editor-frontend/static/css/main.17b38c0c.chunk.css.map",
+    "static/js/2.8cd6b6e4.chunk.js.LICENSE.txt": "/dialogue-web-editor-frontend/static/js/2.8cd6b6e4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3bf627d7.js",
-    "static/js/2.ade21948.chunk.js",
-    "static/css/main.830334fe.chunk.css",
-    "static/js/main.a38c0be3.chunk.js"
+    "static/js/runtime-main.1573c17a.js",
+    "static/js/2.8cd6b6e4.chunk.js",
+    "static/css/main.17b38c0c.chunk.css",
+    "static/js/main.7ce24f2e.chunk.js"
   ]
 }

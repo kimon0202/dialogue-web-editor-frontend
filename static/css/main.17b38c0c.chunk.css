@@ -1,0 +1,2 @@
+.input-control{font-size:18px;padding:10px;resize:none;outline:none}.input-control:focus{box-shadow:none}label.label{position:absolute;left:10px;top:10px;transition:all .3s;-webkit-transition:all .3s;-moz-transition:all .3s;-ms-transition:all .3s;-o-transition:all .3s;color:#999;font-weight:400}.input-control:focus~label.label,label.label.active{left:5px;top:-10px;background:#fff;padding:0 5px}
+/*# sourceMappingURL=main.17b38c0c.chunk.css.map */
