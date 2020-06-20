@@ -17,11 +17,9 @@ export interface NodeMap {
   };
 }
 
-type DialogueType = 'player' | 'ai-character';
-
 export interface NodeEditFormData {
   text: string;
   inConnections: { label: string; value: string }[];
   outConnections: { label: string; value: string }[];
-  type: DialogueType;
+  type: { label: string; value: string };
 }

@@ -70,13 +70,13 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   );
 
   const handleEditFormSubmit: SubmitHandler<NodeEditFormData> = (data) => {
-    console.log(data);
+    // console.log(data);
     const { inConnections, outConnections, text, type } = data;
 
     const node = nodesStore.nodes[identifier];
 
     node.text = text;
-    node.dialogueType = type;
+    node.dialogueType = type.value;
 
     outConnections.forEach((connection) => {
       connectionsStore.addConnection(node.id, connection.value);
@@ -120,7 +120,10 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
   const renderEditModal = () => {
     const node = nodesStore.nodes[identifier];
     const initialText = node.text;
-    const initialDialogueType = node.dialogueType;
+    const initialDialogueType = {
+      label: node.dialogueType,
+      value: node.dialogueType,
+    };
 
     const { inConnections, outConnections } = handleGetInitialConnections(
       node.id,
@@ -145,7 +148,7 @@ const DialogueNode: React.FC<DialogueNodeProps> = observer(({ identifier }) => {
                 text: initialText,
                 inConnections,
                 outConnections,
-                type: initialDialogueType,
+                type: initialDialogueType.label ? [initialDialogueType] : [],
               }}
             >
               <BoxContainer>

@@ -44,7 +44,7 @@ export interface SelectProps extends SelectStyles {
 // TODO: Make component focused when Arrow Icon is clicked
 // TODO: Focus input component when arrow icon is clciked
 // TODO: Remove options from array when default values is received
-// TODO: Add scrollable selected items container fro multi select component
+// TODO: Add scrollable selected items container for multi select component
 // // TODO: Receive default values
 // // TODO: Multi Select state management
 // // TODO: Add override styles props for each component of select component
@@ -79,10 +79,6 @@ const Select = forwardRef<{ state: OptionBase[] }, SelectProps>(
 
     const [inputValue, setInputValue] = useState('');
     const [values, setValues] = useState<OptionBase[]>(defaultValue);
-
-    // useEffect(() => {
-    //   setValues(defaultValue);
-    // }, [defaultValue]);
 
     useImperativeHandle(
       ref,
